@@ -1,0 +1,25 @@
+name: Sync with doomemacs
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          ref: main
+          path: .
+      - uses: actions/checkout@v2
+        with:
+          repository: doomemacs/doomemacs
+          ref: master
+          depth: 1
+      - run: cp doomemacs/bin/org-tangle .
+      - run: cp doomemacs/bin/org-capture .
+      - run: git add .
+      - run: git diff-index --quiet HEAD || git commit -m "Sync with doomemacs commit $(git log --format=%H -1)"
+      - run: git push
