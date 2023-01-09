@@ -13,5 +13,5 @@ jobs:
       - run: cp -vf /tmp/doomemacs/bin/org-tangle .
       - run: cp -vf /tmp/doomemacs/bin/org-capture .
       - run: git add .
-      - run: git diff-index --quiet HEAD || git commit -m "Sync with doomemacs commit $(cd /tmp/doomemacs/ && git log --format=%H -1)"
-      - run: git push
+      - run: git commit -m "Sync with doomemacs commit $(cd /tmp/doomemacs/ && git log --format=%H -1)" || true
+      - run: git push || true
