@@ -1,2 +1,2 @@
 # orgsep
-Extracted from Doom Emacs. 
+Extracted from Doom Emacs.  
