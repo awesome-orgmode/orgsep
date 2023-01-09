@@ -8,18 +8,11 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          repository: ${{ github.repository }}
-          ref: main
-          path: .
-      - uses: actions/checkout@v2
-        with:
-          repository: doomemacs/doomemacs
-          ref: master
-          depth: 1
-      - run: cp doomemacs/bin/org-tangle .
-      - run: cp doomemacs/bin/org-capture .
+      - uses: actions/checkout@v3
+      - run: git config --global user.email "nonexist@nonexist.com" && git config --global user.name "nonexist"
+      - run: git clone https://github.com/doomemacs/doomemacs /tmp/doomemacs
+      - run: cp -vf /tmp/doomemacs/bin/org-tangle .
+      - run: cp -vf /tmp/doomemacs/bin/org-capture .
       - run: git add .
-      - run: git diff-index --quiet HEAD || git commit -m "Sync with doomemacs commit $(git log --format=%H -1)"
-      - run: git push
+      - run: git commit -m "Sync with doomemacs commit $(cd /tmp/doomemacs/ && git log --format=%H -1)" || true
+      - run: git push 
