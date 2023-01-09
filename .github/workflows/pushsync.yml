@@ -9,9 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: git clone https://github.com/doomemacs/doomemacs /doomemacs
-      - run: cp -vf doomemacs/bin/org-tangle .
-      - run: cp -vf doomemacs/bin/org-capture .
+      - run: git clone https://github.com/doomemacs/doomemacs /tmp/doomemacs
+      - run: cp -vf /tmp/doomemacs/bin/org-tangle .
+      - run: cp -vf /tmp/doomemacs/bin/org-capture .
       - run: git add .
-      - run: git diff-index --quiet HEAD || git commit -m "Sync with doomemacs commit $(cd /doomemacs/ && git log --format=%H -1)"
+      - run: git diff-index --quiet HEAD || git commit -m "Sync with doomemacs commit $(cd /tmp/doomemacs/ && git log --format=%H -1)"
       - run: git push
