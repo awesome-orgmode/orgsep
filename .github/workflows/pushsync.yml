@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - run: git config --global user.email "nonexist@nonexist.com" && git config --global user.name "nonexist@nonexist.com"
       - run: git clone https://github.com/doomemacs/doomemacs /tmp/doomemacs
       - run: cp -vf /tmp/doomemacs/bin/org-tangle .
       - run: cp -vf /tmp/doomemacs/bin/org-capture .
