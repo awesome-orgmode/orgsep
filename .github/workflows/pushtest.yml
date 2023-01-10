@@ -10,5 +10,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: git config --global user.email "nonexist@nonexist.com" && git config --global user.name "nonexist"
-      - run: whoami && sudo apt update && sudo apt info emacs && sudo apt install -y emacs && sudo apt install -y "*emacs*org*"
+      - run: whoami && sudo apt update && sudo apt info emacs && sudo apt install -y "*emacs*org*" || sudo apt install -y emacs
       - run: ./org-tangle -a -p README.org
