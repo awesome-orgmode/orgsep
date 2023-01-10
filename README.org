@@ -1,0 +1,13 @@
+* orgsep
+  :PROPERTIES:
+  :CUSTOM_ID: orgsep
+  :END:
+
+Extracted from Doom Emacs, with extra fix to make these things work on
+Emacs 28+.
+
+#+BEGIN_SRC shell :tangle addtopath.sh 
+#!/bin/sh
+echo "export PATH=\"$(pwd):\$PATH\"" >> ~/.zshrc
+echo "export PATH=\"$(pwd):\$PATH\"" >> ~/.bashrc
+#+END_SRC

@@ -1,0 +1,13 @@
+name: Automated test on push
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: git config --global user.email "nonexist@nonexist.com" && git config --global user.name "nonexist"
+      - run: ./org-tangle -a -p README.org
