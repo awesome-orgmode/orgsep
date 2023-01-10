@@ -13,6 +13,7 @@ jobs:
       - run: git clone https://github.com/doomemacs/doomemacs /tmp/doomemacs
       - run: cp -vf /tmp/doomemacs/bin/org-tangle .
       - run: cp -vf /tmp/doomemacs/bin/org-capture .
+      - run: sed -i -e "/'org-babel-tangle-collect-blocks/,+1d" ./org-tangle || true
       - run: git add .
       - run: git commit -m "Sync with doomemacs commit $(cd /tmp/doomemacs/ && git log --format=%H -1)" || true
       - run: git push 
